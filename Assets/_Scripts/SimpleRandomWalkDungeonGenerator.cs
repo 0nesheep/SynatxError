@@ -24,6 +24,10 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
     public List<EnemyType> enemyTypes = new List<EnemyType>();
     private List<GameObject> generatedEnemies = new List<GameObject>();
 
+    [SerializeField]
+    public GameObject decor;
+    private List<GameObject> generatedDecor = new List<GameObject>();
+
     public HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
 
     protected override void RunProceduralGeneration()
@@ -43,16 +47,25 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
 
             // Instantiate the selected enemy type prefab at a random position
             Vector2Int randomPosition = floorPositions.ElementAt(UnityEngine.Random.Range(0, floorPositions.Count));
+            Vector2Int decorPos = floorPositions.ElementAt(UnityEngine.Random.Range(0, floorPositions.Count));
+
+            GameObject newDecor = Instantiate(decor, new Vector3(decorPos.x, decorPos.y, 0f), Quaternion.identity);
+            generatedDecor.Add(newDecor);
 
             GameObject newEnemy = Instantiate(selectedEnemyType.enemyPrefab, new Vector3(randomPosition.x, randomPosition.y, 0f ), Quaternion.identity);
             generatedEnemies.Add(newEnemy);
 
             EnemyScript enemyScript = newEnemy.GetComponent<EnemyScript>();
+            RunEnemy runEnemy = newEnemy.GetComponent<RunEnemy>();
 
             if (enemyScript != null)
             {
                 // Set the player data in the EnemyScript component
                 enemyScript.player = player; // Assuming 'player' is a public Transform field in EnemyScript
+            }
+            if (runEnemy != null)
+            {
+                runEnemy.player = player;
             }
         }
     }
@@ -60,7 +73,12 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
     {
         foreach (GameObject enemy in generatedEnemies)
         {
-            Destroy(enemy);
+            DestroyImmediate(enemy);
+        }
+
+        foreach(GameObject decor in generatedDecor)
+        {
+            DestroyImmediate(decor);
         }
 
         // Clear the list

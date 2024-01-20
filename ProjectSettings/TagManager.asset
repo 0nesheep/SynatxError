@@ -45,21 +45,21 @@ TagManager:
   - name: Floor
     uniqueID: 736078675
     locked: 0
+  - name: Back Walls
+    uniqueID: 141520281
+    locked: 0
+  - name: Top walls
+    uniqueID: 4045072505
+    locked: 0
+  - name: Attack
+    uniqueID: 2772167363
+    locked: 0
+  - name: Object
+    uniqueID: 3211637071
+    locked: 0
   - name: Enemy
     uniqueID: 174211775
     locked: 0
   - name: Player
     uniqueID: 3377407375
-    locked: 0
-  - name: Attack
-    uniqueID: 2772167363
-    locked: 0
-  - name: Top walls
-    uniqueID: 4045072505
-    locked: 0
-  - name: Back Walls
-    uniqueID: 141520281
-    locked: 0
-  - name: Object
-    uniqueID: 3211637071
     locked: 0
