@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,8 +8,8 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
+    [SerializeField] public Transform player;
     private float range;
-    public Transform player;
     private float distance = 3.0f;
     private bool isCollision = false;
     private float speed = -1.0f;
@@ -18,6 +19,7 @@ public class EnemyScript : MonoBehaviour
     private Vector2 spawn;
     private Health health;
 
+    
 
 
     // Start is called before the first frame update
