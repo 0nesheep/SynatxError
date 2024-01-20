@@ -23,5 +23,6 @@ public class PlayerScript : MonoBehaviour
         vertical = Input.GetAxisRaw("Vertical");
 
         rb.velocity = new Vector2(horizontal * speed, vertical * speed);
+        transform.rotation = Quaternion.identity;
     }
 }
