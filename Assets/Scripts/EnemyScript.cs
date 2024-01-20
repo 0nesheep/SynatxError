@@ -11,11 +11,12 @@ public class EnemyScript : MonoBehaviour
     public Transform player;
     private float distance = 3.0f;
     private bool isCollision = false;
-    private float speed = -3.0f;
+    private float speed = -1.0f;
 
     private float returnSpeed = 2.0f;
     private float minReturn = 8.0f;
     private Vector2 spawn;
+    private Health health;
 
 
 
@@ -23,11 +24,22 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         spawn = transform.position;
+        health = GetComponent<Health>();
+        if (health == null)
+        {
+            Debug.LogError("Health component not found on the enemy GameObject.");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(health.currHealthChecker());
+        if (health.currHealthChecker() <= 0)
+        {
+            Die();
+            return;
+        }
         range = Vector2.Distance(transform.position, player.position);
 
         if (range < distance)
@@ -37,7 +49,7 @@ public class EnemyScript : MonoBehaviour
                 Vector3 directionToPlayer = transform.position - player.position;
                 directionToPlayer.Normalize();
 
-                transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(this.transform.position, directionToPlayer, speed * Time.deltaTime);
             }
         } else if (range > minReturn)
         {
@@ -49,6 +61,11 @@ public class EnemyScript : MonoBehaviour
         transform.rotation = Quaternion.identity;
     }
 
+    public void Die()
+    {
+        Debug.Log("Enemy Died");
+        gameObject.SetActive(false);
+    }
 
 
 }
