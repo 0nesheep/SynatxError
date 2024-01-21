@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space)) 
         {
             Attack();
         }
@@ -40,5 +40,10 @@ public class PlayerAttack : MonoBehaviour
     {
         attacking = true;
         attackArea.SetActive(attacking);
+    }
+
+    public bool Attacking()
+    {
+        return attacking;
     }
 }

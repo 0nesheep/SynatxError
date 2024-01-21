@@ -36,7 +36,7 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(health.currHealthChecker());
+        //Debug.Log(health.currHealthChecker());
         if (health.currHealthChecker() <= 0)
         {
             Die();
@@ -55,10 +55,10 @@ public class EnemyScript : MonoBehaviour
             }
         } else if (range > minReturn)
         {
-            Invoke("ReturnToSpawn", 5.0f); 
+            /*Invoke("ReturnToSpawn", 5.0f); 
             Vector2 directionToSpawn = spawn - (Vector2)transform.position;
             directionToSpawn.Normalize();
-            transform.position = Vector2.MoveTowards(transform.position, spawn, returnSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, spawn, returnSpeed * Time.deltaTime);*/
         }
         transform.rotation = Quaternion.identity;
     }

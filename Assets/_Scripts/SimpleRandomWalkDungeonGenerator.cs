@@ -32,11 +32,18 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
 
     protected override void RunProceduralGeneration()
     {
+        //HashSet<Vector2Int> floorPositions = RunRandomWalk();
         floorPositions = RunRandomWalk();
         tileMapVisualizer.ClearTiles();
+        Debug.Log("hi i reached after clear tiles");
+
         tileMapVisualizer.PaintFloorTiles(floorPositions);
+        Debug.Log("hi i reached after paint floor tiles");
         spawnEnemies(10);
+        Debug.Log("hi i reached after spwan enemies");
         WallGenerator.CreateWalls(floorPositions, tileMapVisualizer);
+        Debug.Log("hi i reached after create walls");
+        
     }
     private void spawnEnemies(int number)
     {
@@ -44,7 +51,8 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
         for (int i = 0; i < number; i++)
         {
             EnemyType selectedEnemyType = enemyTypes[UnityEngine.Random.Range(0, enemyTypes.Count)];
-
+            Debug.Log("reached select Enemy");
+            Debug.Log(floorPositions.Count);
             // Instantiate the selected enemy type prefab at a random position
             Vector2Int randomPosition = floorPositions.ElementAt(UnityEngine.Random.Range(0, floorPositions.Count));
             Vector2Int decorPos = floorPositions.ElementAt(UnityEngine.Random.Range(0, floorPositions.Count));
@@ -86,7 +94,7 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
     }
     protected HashSet<Vector2Int> RunRandomWalk()
     {
-        if (transform.position != null)
+        /*if (transform.position != null)
         {
             startPosition = new Vector2Int((int)transform.position.x, (int)transform.position.y);
         }
@@ -94,19 +102,22 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
         {
             Debug.LogError("PlayerScript is not assigned or does not have a valid reference to the player object.");
         }
-        Debug.Log(startPosition);
+        Debug.Log(startPosition);*/
         var currPosition = startPosition;
-         
+        HashSet<Vector2Int> floorPositions3 = new HashSet<Vector2Int>();
+
 
         for (int i = 0; i < randomWalkParameters.iterations; i++)
         {
             var path = ProceduralGenerationAlgorithms.SimpleRandomWalk(currPosition, randomWalkParameters.walkLength);
-            floorPositions.UnionWith(path);
+            floorPositions3.UnionWith(path);
             if(randomWalkParameters.startRandomlyEveryIteration)
             {
-                currPosition = floorPositions.ElementAt(UnityEngine.Random.Range(0, floorPositions.Count));
+                currPosition = floorPositions3.ElementAt(UnityEngine.Random.Range(0, floorPositions3.Count));
             }
         }
-        return floorPositions;
+        return floorPositions3;
     }
+
+    
 }

@@ -206,7 +206,11 @@ GameObject:
   - component: {fileID: 3987047197496077977}
   - component: {fileID: 4136442560290567556}
   - component: {fileID: 7563656238681653352}
+<<<<<<< HEAD
   - component: {fileID: 8600936144950448307}
+=======
+  - component: {fileID: 3459908815072526945}
+>>>>>>> 31382ab2b5ff45979fbcc9c55a54a0e2b1849c14
   m_Layer: 0
   m_Name: Compilation errors
   m_TagString: Untagged
@@ -338,7 +342,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.21133333}
@@ -380,15 +384,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+<<<<<<< HEAD
 --- !u!95 &8600936144950448307
 Animator:
   serializedVersion: 5
+=======
+--- !u!114 &3459908815072526945
+MonoBehaviour:
+>>>>>>> 31382ab2b5ff45979fbcc9c55a54a0e2b1849c14
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4341929375494288979}
   m_Enabled: 1
+<<<<<<< HEAD
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5df7324df9b4fd74b820dd417d9e838d, type: 2}
   m_CullingMode: 0
@@ -401,3 +411,10 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+=======
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26dc0c5dd4785754ba98768a71498638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 4
+>>>>>>> 31382ab2b5ff45979fbcc9c55a54a0e2b1849c14
