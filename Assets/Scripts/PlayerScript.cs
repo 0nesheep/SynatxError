@@ -13,18 +13,32 @@ public class PlayerScript : MonoBehaviour
     private bool isDashing = false;
     private float dashSpeed = 0.5f;
     private float dashAmount = 0.1f;
-
+    public DeathPopUp deathPopUp;
     private bool isCollision = false;
+    private Health health;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<Health>();
+        if (health == null)
+        {
+            Debug.LogError("Health component not found on the enemy GameObject.");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("player health:");
+        Debug.Log(this.health.currHealthChecker());
+        if (this.health.currHealthChecker() <= 0)
+        {
+            Die();
+            return;
+        }
+
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
@@ -56,5 +70,12 @@ public class PlayerScript : MonoBehaviour
             yield return null;
         }
         isDashing = false;
+    }
+
+    public void Die()
+    {
+        Debug.Log("Player Died");
+        //deathPopUp.ShowDeathPopup();
+        gameObject.SetActive(false);
     }
 }
